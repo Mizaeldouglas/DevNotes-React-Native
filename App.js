@@ -2,14 +2,21 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/es/integration/react'
+
+import { store, persistor } from './src/store'
 
 export default function App() {
   return (
-    <NavigationContainer>
-		<View style={styles.container}>
-		<Text>Hello World!!!</Text>
-		<StatusBar style="auto" />
-    </View>
+    <NavigationContainer  >
+		<Provider store={store} >
+			<PersistGate loading={null} persistor={persistor}>
+				<View style={styles.container}>
+					<Text>Ola Mundo</Text>
+				</View>
+			</PersistGate>
+		</Provider>
 	</NavigationContainer>
   );
 }
